@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+    - name: install control node packages
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+       - curl
