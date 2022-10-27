@@ -10,6 +10,13 @@
 > apt update  
 > apt install ansible  
 
+3. Install Git  
+> apt install git  
+
+4. Clone Lab Repo (this time you are inside the container)  
+> git clone https://github.com/fullstackdatascientist/backend_automation.git  
+> cd backend_automation  
+
 3. Deploy database  
 
 > ansible-playbook database.yml  
