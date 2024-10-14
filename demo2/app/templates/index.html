@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call Azure Function</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            margin-top: 50px;
+        }
+        .banner {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .error-banner {
+            background-color: #f2dede;
+            color: #a94442;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>Submit Data to Azure Function</h1>
+        
+        <!-- Form for input -->
+        <form action="{{ url_for('submit_form') }}" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="state">State:</label><br>
+            <input type="text" id="state" name="state" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+
+        <!-- Display flashed messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="{% if category == 'success' %}banner{% elif category == 'error' %}error-banner{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Display record if available -->
+        {% if record %}
+        <div class="banner">
+            <h2>Record Inserted:</h2>
+            <p><strong>Name:</strong> {{ record['name'] }}</p>
+            <p><strong>State:</strong> {{ record['state'] }}</p>
+            <p><strong>Other Data:</strong> {{ record }}</p> <!-- Show other record details if available -->
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

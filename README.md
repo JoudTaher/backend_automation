@@ -2,16 +2,18 @@
 
 1. Create a docker container based off Ubuntu  
 
-> docker run -it ubuntu bash  
+> port=$RANDOM
+> echo $port
+> docker run -p $port:80 -it ubuntu bash  
 
 
 2. Install Ansible  
 
 > apt update  
-> apt install ansible  
+> apt install -y ansible  
 
 3. Install Git  
-> apt install git  
+> apt install -y git  
 
 4. Clone Lab Repo (this time you are inside the container)  
 > git clone https://github.com/fullstackdatascientist/backend_automation.git  
